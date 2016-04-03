@@ -61,16 +61,16 @@ function fetchProviderForecastByCity(url, city, converter, cb) {
                         'insert into forecast (time, provider_id, city_id, temp, pressure, humidity, weather_info) ' +
                         'values (?, ?, ?, ?, ?, ?, ?) ' +
                         'on duplicate key update temp = ?, pressure = ?, humidity = ?, weather_info = ?',
-                        [item.time, item.provider_id, item.city_id,
-                            item.temp, item.pressure, item.humidity, item.weather_info,
-                            item.temp, item.pressure, item.humidity, item.weather_info],
-                        function (err) {
-                            if (err) {
-                                console.error(err);
-                            }
+                    [item.time, item.provider_id, item.city_id,
+                        item.temp, item.pressure, item.humidity, item.weather_info,
+                        item.temp, item.pressure, item.humidity, item.weather_info],
+                    function (err) {
+                        if (err) {
+                            console.error(err);
+                        }
 
-                            callback();
-                        });
+                        callback();
+                    });
                 } else {
                     console.log(item);
                 }
