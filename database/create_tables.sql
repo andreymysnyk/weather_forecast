@@ -25,7 +25,8 @@ create table weather_forecast.city (
 );
 
 create table weather_forecast.city_to_provider (
-    id int privary key,
+    id int primary key,
+    provider_id int,
     city_id int,
     provider_city_id int
 );

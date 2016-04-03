@@ -1,7 +1,7 @@
 drop database if exists weather_forecast;
 
-drop user if exists 'wf_read'@'localhost';
-drop user if exists 'wf_write'@'localhost';
+drop user 'wf_read'@'localhost';
+drop user 'wf_write'@'localhost';
 
 create database weather_forecast;
 
