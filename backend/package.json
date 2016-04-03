@@ -9,6 +9,7 @@
   "author": "Andrey Mysnyk",
   "license": "ISC",
   "dependencies": {
+    "mysql": "^2.10.2",
     "restify": "^4.0.4"
   }
 }

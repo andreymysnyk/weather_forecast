@@ -12,7 +12,7 @@ var server = restify.createServer(options);
 
 // routes
 server.get('/providers', resources.listProviders);
-server.get('/cities/:provider/', resources.listCities);
+server.get('/cities', resources.listCities);
 server.get('/forecast/:provider/:city/', resources.listForecast);
 
 module.exports = server;
