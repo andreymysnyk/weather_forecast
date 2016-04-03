@@ -1,8 +1,10 @@
 /**
  * Created by andrey on 03.04.2016.
  */
-var server = require('./server');
+var nconf = require('nconf');
+nconf.file('./config.json');
 
-server.listen(8080, function () {
+var server = require('./server');
+server.listen(nconf.get('server_port'), function () {
     console.log('WeatherForecast API server listening on %j', server.address());
 });
