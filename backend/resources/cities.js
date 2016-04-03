@@ -1,10 +1,10 @@
 /**
  * Created by andrey on 03.04.2016.
  */
-var database = require('../database');
+var pool = require('../database').read_pool;
 
 module.exports = function listCities (req, res) {
-    database.read_pool.query(
+    pool.query(
         'select ' +
         '   city.id, city.city, country.country ' +
         'from city as city ' +
