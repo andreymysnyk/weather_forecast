@@ -1,0 +1,14 @@
+{
+  "name": "weather_forecast",
+  "version": "1.0.0",
+  "description": "Weather forecast API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Andrey Mysnyk",
+  "license": "ISC",
+  "dependencies": {
+    "restify": "^4.0.4"
+  }
+}
