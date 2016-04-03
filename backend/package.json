@@ -9,8 +9,11 @@
   "author": "Andrey Mysnyk",
   "license": "ISC",
   "dependencies": {
+    "async": "^2.0.0-rc.2",
     "mysql": "^2.10.2",
     "nconf": "^0.8.4",
+    "node-schedule": "^1.1.0",
+    "request": "^2.69.0",
     "restify": "^4.0.4"
   }
 }

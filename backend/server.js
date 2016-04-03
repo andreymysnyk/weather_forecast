@@ -2,7 +2,7 @@
  * Created by andrey on 03.04.2016.
  */
 var restify = require('restify');
-var resources = require('./resources');
+var routes = require('./routes');
 
 var options = {
     name: 'WeatherForecast API'
@@ -11,8 +11,8 @@ var options = {
 var server = restify.createServer(options);
 
 // routes
-server.get('/providers', resources.listProviders);
-server.get('/cities', resources.listCities);
-server.get('/forecast/:provider/:city/', resources.listForecast);
+server.get('/providers', routes.listProviders);
+server.get('/cities', routes.listCities);
+server.get('/forecast/:provider/:city/', routes.listForecast);
 
 module.exports = server;

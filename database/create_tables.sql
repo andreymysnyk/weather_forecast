@@ -10,11 +10,14 @@ create table weather_forecast.forecast (
     id int primary key auto_increment,
     time timestamp,
     provider_id int,
+    city_id int,
     temp numeric(10,2),
     pressure numeric(10,2),
     humidity int,
     weather_info varchar(32)
 );
+
+create unique index forecast_date on weather_forecast.forecast (time, provider_id, city_id);
 
 create table weather_forecast.city (
     id int primary key,

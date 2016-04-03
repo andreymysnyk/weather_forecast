@@ -5,7 +5,11 @@
       "read_user": "wf_read",
       "read_password": "wf_read",
       "write_user": "wf_write",
-      "wrire_password": "wf_write",
+      "write_password": "wf_write",
       "database": "weather_forecast"
+  },
+  "schedule": "/1 * * * * *",
+  "openweathermap": {
+      "url": "http://api.openweathermap.org/data/2.5/forecast?id=:cityId&APPID=f3fd50ffad2aa61b61e79b69a314340e&mode=json&units=metric&cnt=8"
   }
 }
