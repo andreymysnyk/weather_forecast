@@ -9,6 +9,7 @@ var options = {
 };
 
 var server = restify.createServer(options);
+server.use(restify.queryParser());
 
 // routes
 server.get('/providers', routes.listProviders);

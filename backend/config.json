@@ -8,8 +8,8 @@
       "write_password": "wf_write",
       "database": "weather_forecast"
   },
-  "schedule": "/1 * * * * *",
+  "schedule": "/5 * * * * *",
   "openweathermap": {
-      "url": "http://api.openweathermap.org/data/2.5/forecast?id=:cityId&APPID=f3fd50ffad2aa61b61e79b69a314340e&mode=json&units=metric&cnt=8"
+      "url": "http://api.openweathermap.org/data/2.5/forecast?id=:cityId&APPID=f3fd50ffad2aa61b61e79b69a314340e&mode=json&units=metric&cnt=16"
   }
 }
