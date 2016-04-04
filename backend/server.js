@@ -11,6 +11,8 @@ var options = {
 var server = restify.createServer(options);
 server.use(restify.queryParser());
 
+server.use(restify.CORS({}));
+
 // routes
 server.get('/providers', routes.listProviders);
 server.get('/cities', routes.listCities);

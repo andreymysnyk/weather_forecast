@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app="weather forecast">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Forecast</title>
+</head>
+<body>
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+
+    <div ng-controller="ForecastController">
+        <div>
+            <select ng-model="providerId" ng-options="item.id as item.title for item in providerList" class="form-control"></select>
+        </div>
+
+        <div>
+            <select ng-model="cityId" ng-options="item.id as item.city + ' (' + item.country + ')' for item in cityList" class="form-control"></select>
+        </div>
+
+        <div>
+            <button ng-click="loadForecast()">Get it!</button>
+        </div>
+
+        <div>
+            <div ng-repeat="item in forecast">
+                {{item}}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
