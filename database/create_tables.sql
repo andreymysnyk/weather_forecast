@@ -8,7 +8,7 @@ create unique index forecast_provider_code on weather_forecast.forecast_provider
 
 create table weather_forecast.forecast (
     id int primary key auto_increment,
-    time timestamp,
+    time timestamp not null,
     provider_id int,
     city_id int,
     temp numeric(10,2),

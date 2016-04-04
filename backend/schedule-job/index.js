@@ -56,12 +56,8 @@ function fetchProviderForecastByCity(url, city, converter, cb) {
                 item.provider_id = city.provider_id;
                 item.city_id = city.city_id;
 
-                pool.query(
-                    'insert into forecast (time, provider_id, city_id, temp, pressure, humidity, weather_info) ' +
-                    'values (?, ?, ?, ?, ?, ?, ?) ' +
-                    'on duplicate key update temp = ?, pressure = ?, humidity = ?, weather_info = ?',
+                pool.query('call store_forecast(?, ?, ?, ?, ?, ?, ?)',
                 [item.time, item.provider_id, item.city_id,
-                    item.temp, item.pressure, item.humidity, item.weather_info,
                     item.temp, item.pressure, item.humidity, item.weather_info],
                 function (err) {
                     if (err) {
