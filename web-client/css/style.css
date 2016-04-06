@@ -1,0 +1,99 @@
+body {
+    font-size: 12px;
+}
+
+#main-container {
+    width: 808px;
+    height: 301px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -150px 0 0 -404px;
+}
+
+#main-container > div:first-child {
+    padding: 5px;
+}
+
+#main-container > div:first-child > div {
+    display: inline-block;
+}
+
+#main-container > div:first-child > div:last-child {
+    float: right;
+}
+
+.forecast-container.load {
+    opacity: 1;
+}
+
+.forecast-container {
+    opacity: 0;
+    display: inline-block;
+    width: 95px;
+    height: 250px;
+    margin: 0 0 5px 5px;
+    border: 1px solid silver;
+    border-radius: 3px;
+    transition: opacity 0.5s ease-in;
+}
+
+canvas {
+    position: fixed;
+    z-index: -1;
+}
+
+.forecast-container .temp {
+    text-align: right;
+    color: rgba(255, 120, 40, 0.9);
+    height: 30px;
+}
+
+.forecast-container .temp .symbol {
+    font-size: 16px;
+    float: right;
+    padding-top: 2px;
+    padding-right: 3px;
+}
+
+.forecast-container .temp .number {
+    font-size: 20px;
+    float: right;
+}
+
+.forecast-container .image-info {
+    width: 95px;
+    height: 75px;
+    text-align: center;
+}
+
+.forecast-container .humidity {
+    margin-top: 25px;
+    text-align: right;
+    color: rgba(40, 80, 225, 0.9);
+    font-size: 12px;
+    font-weight: bold;
+    padding-right: 2px;
+}
+
+.forecast-container .pressure {
+    text-align: right;
+    color: rgba(90, 135, 90, 0.9);
+    font-size: 12px;
+    font-weight: bold;
+    padding-right: 2px;
+}
+
+.forecast-container .hours {
+    margin-top: 25px;
+    text-align: center;
+    font-size: 120%;
+    color: rgba(80, 80, 80, 0.9);
+}
+
+.forecast-container .date {
+    text-align: center;
+    color: rgba(120, 120, 120, 0.9);
+}

@@ -2,28 +2,52 @@
 <html ng-app="weather forecast">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <title>Weather Forecast</title>
 </head>
 <body>
     <script type="text/javascript" src="js/angular.min.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
 
-    <div ng-controller="ForecastController">
+    <div ng-controller="ForecastController" id="main-container">
         <div>
-            <select ng-model="providerId" ng-options="item.id as item.title for item in providerList" class="form-control"></select>
+            <div>
+                <select ng-model="providerId" ng-options="item.id as item.title for item in providerList" class="form-control"></select>
+            </div>
+
+            <div>
+                <select ng-model="cityId" ng-options="item.id as item.city + ' (' + item.country + ')' for item in cityList" class="form-control"></select>
+            </div>
+
+            <div>
+                <button ng-click="loadForecast()" class="btn btn-success">Get it!</button>
+            </div>
         </div>
 
         <div>
-            <select ng-model="cityId" ng-options="item.id as item.city + ' (' + item.country + ')' for item in cityList" class="form-control"></select>
-        </div>
+            <div ng-repeat="item in forecast" class="forecast-container" init-canvas>
+                <canvas width="93" height="250">Forecast temperature</canvas>
 
-        <div>
-            <button ng-click="loadForecast()">Get it!</button>
-        </div>
-
-        <div>
-            <div ng-repeat="item in forecast">
-                {{item}}
+                <div class="temp">
+                    <div class="symbol">&deg;C</div>
+                    <div class="number">{{item.temp | number : 1}}</div>
+                </div>
+                <div class="image-info">
+                    <img src="img/{{item.weather_info + '_' + (isDay(item) ? 'd' : 'n')}}.png" />
+                </div>
+                <div class="humidity">
+                    {{item.humidity}}%
+                </div>
+                <div class="pressure">
+                    {{item.pressure | number : 0}}hPa
+                </div>
+                <div class="hours">
+                    {{item.time.split(' ')[0]}}
+                </div>
+                <div class="date">
+                    {{item.time.split(' ')[1]}}
+                </div>
             </div>
         </div>
     </div>
