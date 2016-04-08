@@ -15,6 +15,7 @@
 		49189E241CB55F2A00603EF4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49189E221CB55F2A00603EF4 /* LaunchScreen.storyboard */; };
 		49189E2F1CB55F2A00603EF4 /* weather_forecastTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 49189E2E1CB55F2A00603EF4 /* weather_forecastTests.m */; };
 		49189E3A1CB55F2A00603EF4 /* weather_forecastUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 49189E391CB55F2A00603EF4 /* weather_forecastUITests.m */; };
+		49DFF1F81CB7F8CD00BCDA8A /* PickerDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DFF1F71CB7F8CD00BCDA8A /* PickerDataSource.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		49189E351CB55F2A00603EF4 /* weather_forecastUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = weather_forecastUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		49189E391CB55F2A00603EF4 /* weather_forecastUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = weather_forecastUITests.m; sourceTree = "<group>"; };
 		49189E3B1CB55F2A00603EF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		49DFF1F71CB7F8CD00BCDA8A /* PickerDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerDataSource.m; sourceTree = "<group>"; };
+		49DFF1F91CB7FA4F00BCDA8A /* PickerDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PickerDataSource.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +113,8 @@
 				49189E221CB55F2A00603EF4 /* LaunchScreen.storyboard */,
 				49189E251CB55F2A00603EF4 /* Info.plist */,
 				49189E141CB55F2900603EF4 /* Supporting Files */,
+				49DFF1F71CB7F8CD00BCDA8A /* PickerDataSource.m */,
+				49DFF1F91CB7FA4F00BCDA8A /* PickerDataSource.h */,
 			);
 			path = weather_forecast;
 			sourceTree = "<group>";
@@ -272,6 +277,7 @@
 			files = (
 				49189E1C1CB55F2900603EF4 /* ViewController.m in Sources */,
 				49189E191CB55F2900603EF4 /* AppDelegate.m in Sources */,
+				49DFF1F81CB7F8CD00BCDA8A /* PickerDataSource.m in Sources */,
 				49189E161CB55F2900603EF4 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -498,6 +504,7 @@
 				49189E401CB55F2A00603EF4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		49189E411CB55F2A00603EF4 /* Build configuration list for PBXNativeTarget "weather_forecastTests" */ = {
 			isa = XCConfigurationList;
@@ -506,6 +513,7 @@
 				49189E431CB55F2A00603EF4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		49189E441CB55F2A00603EF4 /* Build configuration list for PBXNativeTarget "weather_forecastUITests" */ = {
 			isa = XCConfigurationList;
@@ -514,6 +522,7 @@
 				49189E461CB55F2A00603EF4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

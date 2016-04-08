@@ -6,8 +6,11 @@
 //  Copyright © 2016 andrewm. All rights reserved.
 //
 
-#ifndef PickerDataSource_h
-#define PickerDataSource_h
+#import <UIKit/UIKit.h>
 
+@interface PickerDataSource : NSObject <UIPickerViewDataSource, UIPickerViewDelegate>
 
-#endif /* PickerDataSource_h */
+@property NSInteger selectedRow;
+@property NSArray *dataRow;
+
+@end
