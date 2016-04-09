@@ -18,12 +18,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DEb-gr-PI4">
-                                <rect key="frame" x="53" y="252" width="215" height="30"/>
+                                <rect key="frame" x="52" y="188" width="215" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gvP-Nd-WQ0">
-                                <rect key="frame" x="86" y="378" width="147" height="46"/>
+                                <rect key="frame" x="86" y="287" width="147" height="46"/>
                                 <state key="normal" title="Switch text"/>
                                 <connections>
                                     <action selector="handleButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jmz-bl-wHs"/>
@@ -36,16 +36,21 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="teb-zJ-yGf">
-                                <rect key="frame" x="149" y="350" width="20" height="20"/>
+                                <rect key="frame" x="150" y="252" width="20" height="20"/>
                             </activityIndicatorView>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rUe-ij-XS8">
-                                <rect key="frame" x="0.0" y="362" width="320" height="216"/>
+                                <rect key="frame" x="0.0" y="333" width="320" height="245"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="XIf-MD-vuR"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="BCJ-PH-iQe"/>
+                                </connections>
                             </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="button" destination="gvP-Nd-WQ0" id="yO7-Py-Aya"/>
+                        <outlet property="cityPicker" destination="rUe-ij-XS8" id="fXh-4o-Uj8"/>
                         <outlet property="indicator" destination="teb-zJ-yGf" id="u5K-Jq-YcE"/>
                         <outlet property="label" destination="1gq-T2-Cqy" id="aiD-dS-NwY"/>
                         <outlet property="textfield" destination="DEb-gr-PI4" id="XxB-Jq-8Bl"/>
