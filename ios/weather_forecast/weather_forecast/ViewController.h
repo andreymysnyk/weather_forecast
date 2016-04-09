@@ -10,16 +10,23 @@
 
 @interface ViewController : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UILabel *label;
-@property (weak, nonatomic) IBOutlet UITextField *textfield;
-@property (weak, nonatomic) IBOutlet UIButton *button;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicator;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorCity;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorProvider;
 @property (weak, nonatomic) IBOutlet UIPickerView *cityPicker;
+@property (weak, nonatomic) IBOutlet UIPickerView *providerPicker;
+@property (weak, nonatomic) IBOutlet UIButton *getItButton;
+
+@property (nonatomic) BOOL errorShowed;
 
 @property NSArray *cities;
+@property NSArray *providers;
+
 @property NSInteger selectedCity;
+@property NSInteger selectedProvider;
 
 -(void)handleCities: (NSData *)data error:(NSError *)connectionError;
+-(void)handleProviders: (NSData *)data error:(NSError *)connectionError;
+//-(void)loadingDone;
 
 @end
 

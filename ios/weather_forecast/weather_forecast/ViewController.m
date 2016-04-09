@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "SettingsViewController.h"
 
 @interface ViewController ()
 @end
@@ -18,46 +19,81 @@
     // Do any additional setup after loading the view, typically from a nib.
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    self.getItButton.enabled = NO;
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    [[session dataTaskWithURL: [NSURL URLWithString:@"http://192.168.0.236:8080/cities"]
+            completionHandler:^(NSData *data, NSURLResponse *response, NSError *connectionError) {
+                [self handleCities:data error:connectionError];
+            }
+      ] resume];
+    
+    [[session dataTaskWithURL: [NSURL URLWithString:@"http://192.168.0.236:8080/providers"]
+            completionHandler:^(NSData *data, NSURLResponse *response, NSError *connectionError) {
+                [self handleProviders:data error:connectionError];
+            }
+      ] resume];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)handleButton:(id)sender {
-//    self.label.text = self.textfield.text;
-    NSLog(@"button clicked");
-    NSURLSession *session = [NSURLSession sharedSession];
+-(void)loadingDone {
+    if ([self.cities count] > 0 && [self.providers count] > 0) {
+        self.getItButton.enabled = YES;
+    }
+}
+
+-(void)showErrorMessage:(NSError *)error {
+    if (self.errorShowed) {
+        return;
+    }
+    self.errorShowed = YES;
     
-    [[session dataTaskWithURL: [NSURL URLWithString:@"http://192.168.0.236:8080/cities"]
-             completionHandler:^(NSData *data, NSURLResponse *response, NSError *connectionError) {
-                 [self handleCities:data error:connectionError];
-             }
-      ] resume];
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Warning"
+                                                                   message:@"A temporary connection problem. Please, try again later."
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {}];
+    
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 -(void)handleCities: (NSData *)data error:(NSError *)connectionError {
-    NSLog(@"exception: %@", connectionError);
-    NSArray *json = [NSJSONSerialization JSONObjectWithData:data
-                                           options:0
-                                             error:nil];
-    NSLog(@"Async JSON: %@", json);
-    
-    self.cities = json;
-    
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.label.text = @"Done";
-        
-        [self.cityPicker reloadAllComponents];
-        
-        [self.indicator stopAnimating];
+        if (connectionError) {
+            [self showErrorMessage:connectionError];
+        } else {
+            NSArray *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            self.cities = json;
+            [self.cityPicker reloadAllComponents];
+            [self loadingDone];
+        }
+
+        [self.indicatorCity stopAnimating];
     });
-    
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    [self.textfield resignFirstResponder];
-}
+-(void)handleProviders: (NSData *)data error:(NSError *)connectionError {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (connectionError) {
+            [self showErrorMessage:connectionError];
+        } else {
+            NSArray *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            self.providers = json;
+            [self.providerPicker reloadAllComponents];
+            [self loadingDone];
+        }
 
+        [self.indicatorProvider stopAnimating];
+    });
+}
 
 // returns the number of 'columns' to display.
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
@@ -68,19 +104,36 @@
 // returns the # of rows in each component..
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent: (NSInteger)component
 {
-    return [self.cities count];
+    return pickerView == self.cityPicker ? [self.cities count] : [self.providers count];
 }
 
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row   forComponent:(NSInteger)component
 {
-    NSDictionary *city = [self.cities objectAtIndex:row];
-    return [NSString stringWithFormat:@"%@ (%@)", city[@"city"], city[@"country"]];
+    if (pickerView == self.cityPicker) {
+        NSDictionary *city = [self.cities objectAtIndex:row];
+        return [NSString stringWithFormat:@"%@ (%@)", city[@"city"], city[@"country"]];
+    } else {
+        NSDictionary *provider = [self.providers objectAtIndex:row];
+        return provider[@"title"];
+    }
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row   inComponent:(NSInteger)component
 {
-    NSLog(@"did select row: %ld", (long)row);
-    self.selectedCity = row;
+    if (pickerView == self.cityPicker) {
+        self.selectedCity = row;
+    } else {
+        self.selectedProvider = row;
+    }
+    
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"showForecastSegue"]){
+        SettingsViewController *controller = (SettingsViewController *)segue.destinationViewController;
+        controller.city = [self.cities objectAtIndex:self.selectedCity];
+        controller.provider = [self.providers objectAtIndex:self.selectedProvider];
+    }
 }
 
 @end
